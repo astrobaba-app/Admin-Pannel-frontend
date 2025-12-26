@@ -7,8 +7,10 @@ import { adminLogout } from "@/store/api/auth";
 interface Admin {
   id: string;
   fullName: string;
+  name?: string;
   email: string;
   role: string;
+  twoFactorEnabled?: boolean;
 }
 
 interface AuthContextType {

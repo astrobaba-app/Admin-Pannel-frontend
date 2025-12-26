@@ -83,3 +83,56 @@ export const getCategories = async () => {
     throw error.response?.data || error.message;
   }
 };
+
+// ==================== ORDER MANAGEMENT APIs ====================
+
+// Get all orders (admin)
+export const getAllOrders = async (params?: {
+  page?: number;
+  limit?: number;
+  orderStatus?: string;
+  orderType?: string;
+  paymentStatus?: string;
+  search?: string;
+}) => {
+  try {
+    const response = await api.get("/store/admin/orders", { params });
+    return response.data;
+  } catch (error: any) {
+    throw error.response?.data || error.message;
+  }
+};
+
+// Get order statistics (admin)
+export const getOrderStatistics = async (days?: number) => {
+  try {
+    const response = await api.get("/store/admin/orders/statistics", {
+      params: { days },
+    });
+    return response.data;
+  } catch (error: any) {
+    throw error.response?.data || error.message;
+  }
+};
+
+// Update order status (admin)
+export const updateOrderStatus = async (
+  orderNumber: string,
+  data: {
+    orderStatus?: string;
+    trackingNumber?: string;
+    courierName?: string;
+    trackingUrl?: string;
+    adminNotes?: string;
+  }
+) => {
+  try {
+    const response = await api.patch(
+      `/store/admin/orders/${orderNumber}`,
+      data
+    );
+    return response.data;
+  } catch (error: any) {
+    throw error.response?.data || error.message;
+  }
+};

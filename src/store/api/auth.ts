@@ -10,13 +10,21 @@ export interface LoginRequest {
 export interface LoginResponse {
   success: boolean;
   message: string;
+  requires2FA?: boolean;
+  tempToken?: string;
   admin?: {
     id: string;
     fullName: string;
     email: string;
     role: string;
+    twoFactorEnabled?: boolean;
   };
   token?: string;
+}
+
+export interface Verify2FALoginRequest {
+  tempToken: string;
+  code: string;
 }
 
 export interface LogoutResponse {
@@ -79,6 +87,30 @@ export const adminLogout = async (): Promise<LogoutResponse> => {
     
     throw error.response?.data as ErrorResponseData || {
       message: 'Failed to logout',
+      success: false
+    };
+  }
+};
+
+/**
+ * Verify 2FA code during login
+ */
+export const verify2FALogin = async (data: Verify2FALoginRequest): Promise<LoginResponse> => {
+  try {
+    const response: AxiosResponse<LoginResponse> = await api.post(
+      `${BASE_URL}/verify-2fa-login`,
+      data
+    );
+    
+    // Store token in localStorage
+    if (response.data.token && typeof window !== 'undefined') {
+      localStorage.setItem('admin_token', response.data.token);
+    }
+    
+    return response.data;
+  } catch (error: any) {
+    throw error.response?.data as ErrorResponseData || {
+      message: 'Failed to verify 2FA code',
       success: false
     };
   }

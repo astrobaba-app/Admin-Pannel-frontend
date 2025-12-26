@@ -14,6 +14,8 @@ import {
   FaUser,
   FaSignOutAlt,
   FaStore,
+  FaShoppingCart,
+  FaHeadset,
 } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import router from "next/router";
@@ -32,6 +34,8 @@ const menuItems = [
   },
   { icon: FaUsers, label: "Astrologers", href: "/dashboard/astrologers" },
   { icon: FaStore, label: "Store", href: "/dashboard/store" },
+  { icon: FaShoppingCart, label: "Orders", href: "/dashboard/orders" },
+  { icon: FaHeadset, label: "Support", href: "/dashboard/support" },
   { icon: FaMoneyBillWave, label: "Payments", href: "/dashboard/payments" },
 ];
 
