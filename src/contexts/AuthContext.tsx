@@ -24,37 +24,36 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [admin, setAdmin] = useState<Admin | null>(null);
   const [loading, setLoading] = useState(true);
-  const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    setMounted(true);
-    // Check if admin is logged in
-    const token = localStorage.getItem("admin_token");
-    const adminData = localStorage.getItem("admin_data");
+    // Initialize admin state from localStorage
+    const initializeAuth = () => {
+      const token = localStorage.getItem("admin_token");
+      const adminData = localStorage.getItem("admin_data");
 
-    if (token && adminData) {
-      try {
-        setAdmin(JSON.parse(adminData));
-      } catch (error) {
-        console.error("Failed to parse admin data:", error);
-        localStorage.removeItem("admin_data");
-        localStorage.removeItem("admin_token");
+      if (token && adminData) {
+        try {
+          const parsedAdmin = JSON.parse(adminData);
+          setAdmin(parsedAdmin);
+        } catch (error) {
+          console.error("Failed to parse admin data:", error);
+          localStorage.removeItem("admin_data");
+          localStorage.removeItem("admin_token");
+        }
       }
-    }
+      setLoading(false);
+    };
 
-    setLoading(false);
+    initializeAuth();
   }, []);
 
   const logout = async () => {
     try {
-      // Call backend logout API
       await adminLogout();
     } catch (error) {
       console.error("Logout error:", error);
-      // Continue with logout even if API call fails
     } finally {
-      // Clear local state and storage
       setAdmin(null);
       localStorage.removeItem("admin_token");
       localStorage.removeItem("admin_data");
@@ -62,11 +61,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  // Prevent hydration mismatch by showing loading state until mounted
-  if (!mounted) {
+  // Show loading spinner while checking authentication
+  if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500"></div>
+      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
       </div>
     );
   }

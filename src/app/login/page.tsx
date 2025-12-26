@@ -23,27 +23,32 @@ export default function LoginPage() {
   const toast = useToast();
 
   const [email, setEmail] = useState("");
-
   const [password, setPassword] = useState("");
-
   const [loading, setLoading] = useState(false);
-  
-  const [mounted, setMounted] = useState(false);
+  const [checking, setChecking] = useState(true);
 
-  // Check if already logged in
+  // Check if already logged in and redirect to dashboard
   useEffect(() => {
-    setMounted(true);
-    const token = localStorage.getItem("admin_token");
-    if (token) {
-      router.replace("/dashboard");
-    }
+    const checkAuth = () => {
+      const token = localStorage.getItem("admin_token");
+      if (token) {
+        router.replace("/dashboard");
+      } else {
+        setChecking(false);
+      }
+    };
+
+    checkAuth();
   }, [router]);
-  
-  // Prevent hydration mismatch
-  if (!mounted) {
+
+  // Show loading spinner while checking authentication
+  if (checking) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500"></div>
+      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
       </div>
     );
   }

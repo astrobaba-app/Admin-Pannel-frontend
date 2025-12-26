@@ -13,6 +13,7 @@ import {
   FaMoneyBillWave,
   FaUser,
   FaSignOutAlt,
+  FaStore,
 } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import router from "next/router";
@@ -24,8 +25,13 @@ interface SidebarProps {
 
 const menuItems = [
   { icon: FaHome, label: "Dashboard", href: "/dashboard" },
-  { icon: FaCheckCircle, label: "Pending Approvals", href: "/dashboard/pending-approvals" },
+  {
+    icon: FaCheckCircle,
+    label: "Pending Approvals",
+    href: "/dashboard/pending-approvals",
+  },
   { icon: FaUsers, label: "Astrologers", href: "/dashboard/astrologers" },
+  { icon: FaStore, label: "Store", href: "/dashboard/store" },
   { icon: FaMoneyBillWave, label: "Payments", href: "/dashboard/payments" },
 ];
 
@@ -49,10 +55,18 @@ export default function Sidebar({ onClose, isMobile = false }: SidebarProps) {
       {/* Logo Section */}
       <div className="p-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="text-4xl font-bold" style={{ color: colors.primeYellow }}>
-            ///
-          </div>
-          <span className="text-2xl font-bold" style={{ color: colors.primeYellow }}>
+          <Image
+            src="/images/logo.png"
+            alt="Logo"
+            width={50}
+            height={50}
+            unoptimized
+          />
+
+          <span
+            className="text-3xl font-bold"
+            style={{ color: colors.primeYellow }}
+          >
             Graho
           </span>
         </div>
@@ -90,13 +104,18 @@ export default function Sidebar({ onClose, isMobile = false }: SidebarProps) {
       </nav>
 
       {/* Bottom Section */}
-      <div className="px-4 py-4 border-t" style={{ borderColor: colors.creamyYellow }}>
+      <div
+        className="px-4 py-4 border-t"
+        style={{ borderColor: colors.creamyYellow }}
+      >
         <Link
           href="/dashboard/profile"
           className="flex items-center gap-4 px-6 py-4 rounded-lg mb-2 transition-all"
           style={{
             backgroundColor:
-              pathname === "/dashboard/profile" ? colors.primeYellow : "transparent",
+              pathname === "/dashboard/profile"
+                ? colors.primeYellow
+                : "transparent",
             color: colors.black,
           }}
         >

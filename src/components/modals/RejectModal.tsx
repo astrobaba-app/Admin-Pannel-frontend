@@ -32,7 +32,7 @@ export default function RejectModal({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-white/30 backdrop-blur-sm  flex items-center justify-center p-4 z-50">
       <div className="bg-white p-6 rounded-xl shadow-2xl w-full max-w-md relative">
         {/* Close Button */}
         <button

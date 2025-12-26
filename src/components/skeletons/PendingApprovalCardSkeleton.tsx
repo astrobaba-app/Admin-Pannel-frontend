@@ -21,7 +21,7 @@ export default function PendingApprovalCardSkeleton() {
       {/* Action Buttons Skeleton */}
       <div className="flex justify-between space-x-3 mt-4 pt-3 border-t border-gray-100">
         <div className="h-10 bg-gray-200 rounded flex-1"></div>
-        <div className="h-10 bg-gray-200 rounded flex-1"></div>
+       
       </div>
     </div>
   );

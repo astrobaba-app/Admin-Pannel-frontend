@@ -38,7 +38,7 @@ export default function AstrologerCard({
   onReject,
 }: AstrologerCardProps) {
   return (
-    <div className="bg-white p-4 rounded-xl shadow-lg w-full max-w-sm">
+    <div className="bg-white p-4 rounded-xl shadow-sm w-full max-w-sm">
       <div className="flex space-x-4">
         {/* Astrologer Image */}
 
