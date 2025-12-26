@@ -69,7 +69,9 @@ export default function PendingApprovalsPage() {
     try {
       setApproveLoading(true);
 
-      await approveAstrologer(selectedAstrologer.id);
+      await approveAstrologer(selectedAstrologer.id, {
+        pricePerMinute: parseFloat(selectedAstrologer.pricePerMinute) || 0
+      });
 
       toast.success("Astrologer approved successfully");
 
