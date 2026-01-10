@@ -33,10 +33,11 @@ const menuItems = [
     href: "/dashboard/pending-approvals",
   },
   { icon: FaUsers, label: "Astrologers", href: "/dashboard/astrologers" },
+   { icon: FaUsers, label: "Users", href: "/dashboard/users" },
   { icon: FaStore, label: "Store", href: "/dashboard/store" },
   { icon: FaShoppingCart, label: "Orders", href: "/dashboard/orders" },
   { icon: FaHeadset, label: "Support", href: "/dashboard/support" },
-  { icon: FaMoneyBillWave, label: "Payments", href: "/dashboard/payments" },
+  // { icon: FaMoneyBillWave, label: "Payments", href: "/dashboard/payments" },
 ];
 
 export default function Sidebar({ onClose, isMobile = false }: SidebarProps) {

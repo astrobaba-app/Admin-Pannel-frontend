@@ -249,6 +249,8 @@ export default function ProductModal({
                 placeholder="0"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
                 style={{ "--tw-ring-color": colors.primeYellow } as any}
+                onWheel={(e) => e.currentTarget.blur()}
+
               />
             </div>
             <div>
@@ -263,6 +265,8 @@ export default function ProductModal({
                 placeholder="0"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
                 style={{ "--tw-ring-color": colors.primeYellow } as any}
+                onWheel={(e) => e.currentTarget.blur()}
+
               />
             </div>
           </div>
@@ -322,6 +326,7 @@ export default function ProductModal({
                 placeholder="0"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
                 style={{ "--tw-ring-color": colors.primeYellow } as any}
+                onWheel={(e) => e.currentTarget.blur()}
               />
             </div>
           )}
@@ -432,7 +437,7 @@ export default function ProductModal({
                     <button
                       type="button"
                       onClick={() => removeImage(index)}
-                      className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center rounded-lg transition-all"
+                      className="absolute inset-0 hover:bg-black/20 cursor-pointer transition-all bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center rounded-lg transition-all"
                     >
                       <RxCross2 size={20} color="white" className="opacity-0 group-hover:opacity-100" />
                     </button>

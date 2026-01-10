@@ -218,25 +218,6 @@ export default function LoginPage() {
                 Login
               </Button>
 
-              {/* OR Divider */}
-
-              <div className="flex items-center my-4">
-                <div className="flex-grow border-t border-gray-300"></div>
-
-                <span className="flex-shrink mx-4 text-gray-500 text-sm">OR</span>
-
-                <div className="flex-grow border-t border-gray-300"></div>
-              </div>
-
-              <Button
-                fullWidth
-                variant="outline"
-                size="md"
-                className="border-gray-300 text-gray-700 hover:bg-gray-50"
-                icon={<FcGoogle size={20} />}
-              >
-                Login with Google
-              </Button>
             </form>
           ) : (
             <form onSubmit={handleVerify2FA} className="space-y-6">

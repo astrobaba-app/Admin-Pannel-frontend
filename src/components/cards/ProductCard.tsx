@@ -69,11 +69,11 @@ export default function ProductCard({ product, onEdit }: ProductCardProps) {
 
       {/* Content */}
       <div className="p-4">
-        <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 mb-2">
+        <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 md:line-clamp-1 mb-2">
           {product.productName}
         </h3>
 
-        <p className="text-sm text-gray-600 line-clamp-2 mb-3">
+        <p className="text-sm text-gray-600 line-clamp-2 md:line-clamp-1 mb-3">
           {product.shortDescription || product.description}
         </p>
 
@@ -83,11 +83,11 @@ export default function ProductCard({ product, onEdit }: ProductCardProps) {
             className="text-xl font-bold"
             style={{ color: colors.primeYellow }}
           >
-            ₹{product.price}
+            ₹{product.discountPrice || product.price}
           </span>
           {product.discountPrice && (
             <span className="text-sm text-gray-500 line-through">
-              ₹{product.discountPrice}
+              ₹{product.price}
             </span>
           )}
         </div>
